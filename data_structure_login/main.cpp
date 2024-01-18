@@ -30,7 +30,7 @@ void viewAvailableTickets() {
     cout << "Available Tickets:" << endl;
 
     while (current != nullptr) {
-        cout << "Ticket " << current->ticketNumber << ": $" << fixed << setprecision(2) << current->ticketPrice << endl;
+        cout << "Ticket " << current->ticketNumber << ": TK" << fixed << setprecision(2) << current->ticketPrice << endl;
         current = current->next;
         count++;
     }
@@ -44,6 +44,78 @@ bool confirmPurchase() {
     cin >> response;
 
     return (response == 'y' || response == 'Y');
+}
+void buyTicket() {
+    if (head != nullptr) {
+        int numTicketsToBuy;
+        cout << "Enter the number of tickets you want to buy: ";
+        cin >> numTicketsToBuy;
+
+        if (numTicketsToBuy <= 0) {
+            cout << "Invalid number of tickets." << endl;
+            return;
+        }
+
+        Node* temp = head;
+
+        for (int i = 0; i < numTicketsToBuy && temp != nullptr; ++i) {
+            if (confirmPurchase()) {
+                cout << "You have purchased Ticket " << temp->ticketNumber << " for TK" << fixed << setprecision(2) << temp->ticketPrice << endl;
+                Node* nextTicket = temp->next;
+                delete temp;
+                temp = nextTicket;
+            } else {
+                cout << "Purchase canceled." << endl;
+                break;
+            }
+        }
+
+        head = temp;
+    } else {
+        cout << "Sorry, no tickets available." << endl;
+        cout << "please try to next day";
+    }
+
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+int refundTicket(){
+
+}
+
+void runTicketSystem() {
+    int option;
+
+    //initializeTickets(20, 150.0);
+
+    do {
+        displayMenu();
+        cout << "Enter your choice: ";
+        cin >> option;
+
+        switch (option) {
+            case 1:
+                viewAvailableTickets();
+                break;
+            case 2:
+                buyTicket();
+                break;
+            case 3:
+                refundTicket();
+                break;
+            case 4:
+                cout << "Exiting program. Goodbye!" << endl;
+                break;
+            default:
+                cout << "Invalid choice. Please enter a valid option." << endl;
+        }
+
+    } while (option != 4);
+
+    while (head != nullptr) {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+    }
 }
 
 
@@ -59,6 +131,7 @@ void login()
     {
         cout << "Login successful." << endl;
         cout << endl ;
+        runTicketSystem();
 
     }
     else
