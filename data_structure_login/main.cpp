@@ -23,16 +23,22 @@ void displayMenu() {
     cout << "4. Exit" << endl;
 }
 
+void viewAvailableTickets() {
+    Node* current = head;
+    int count = 0;
 
+    cout << "Available Tickets:" << endl;
 
+    while (current != nullptr) {
+        cout << "Ticket " << current->ticketNumber << ": $" << fixed << setprecision(2) << current->ticketPrice << endl;
+        current = current->next;
+        count++;
+    }
 
-
-
-
-
-
-
-
+    if (count == 0) {
+        cout << "No tickets available." << endl;
+    }
+}
 
 
 void login()
