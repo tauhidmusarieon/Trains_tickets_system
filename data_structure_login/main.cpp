@@ -11,10 +11,17 @@ struct Node{
 int ticketNumber;
 float ticketPrice;
 Node* next;
-
-
 };
 
+Node* head = nullptr;
+
+void displayMenu() {
+    cout << "===== Train Ticket Reservation System =====" << endl;
+    cout << "1. View Available Tickets" << endl;
+    cout << "2. Buy Ticket" << endl;
+    cout << "3. Refund Ticket" << endl;
+    cout << "4. Exit" << endl;
+}
 
 
 
