@@ -34,10 +34,16 @@ void viewAvailableTickets() {
         current = current->next;
         count++;
     }
-
     if (count == 0) {
         cout << "No tickets available." << endl;
     }
+}
+bool confirmPurchase() {
+    char response;
+    cout << "Do you want to proceed with the purchase? (y/n): ";
+    cin >> response;
+
+    return (response == 'y' || response == 'Y');
 }
 
 
