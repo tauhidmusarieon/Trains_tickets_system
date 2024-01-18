@@ -1,4 +1,4 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 void login();
@@ -6,6 +6,27 @@ void signup();
 void forgot();
 
 string username, username1, username2, password, password1;
+
+struct Node{
+int ticketNumber;
+float ticketPrice;
+Node* next;
+
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void login()
 {
@@ -18,6 +39,8 @@ void login()
     if (username == username1 && password == password1)
     {
         cout << "Login successful." << endl;
+        cout << endl ;
+
     }
     else
     {
@@ -72,6 +95,8 @@ void forgot()
     }
 }
 
+
+
 int main()
 {
     int n;
@@ -95,4 +120,5 @@ int main()
     }
 
     return 0;
+
 }
