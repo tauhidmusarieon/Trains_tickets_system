@@ -53,7 +53,7 @@ void buyTicket() {
 
 
         int totalAmount;
-        if (numTicketsToBuy <= 0) {
+        if (numTicketsToBuy <= 0 && numTicketsToBuy>4) {
             cout << "Invalid number of tickets." << endl;
             return;
         }
@@ -79,15 +79,14 @@ void buyTicket() {
 
         head = temp;
 
-        cout << "Total amount to be paid: TK" << fixed << setprecision(2) << totalAmount << endl;
+        cout << "Total amount to be paid(extra 20 tk for vat,tax): " << fixed << setprecision(2) << totalAmount+18 << " TK" << endl;
         int paidAmount;
         cout << "Enter the amount: ";
         cin >> paidAmount;
 
         if (paidAmount>totalAmount)
         {
-            cout << "Payment successful. Happy journey " << endl; c
-
+            cout << "Payment successful. Happy journey " << endl << endl;
         }
         else {
 
@@ -125,7 +124,7 @@ int refundTicket(){
             head = current->next;
         }
 
-        cout << "Ticket " << current->ticketNumber << " refunded for $" << fixed << setprecision(2) << current->ticketPrice << endl;
+        cout << "Ticket " << current->ticketNumber << " refunded for TK" << fixed << setprecision(2) << current->ticketPrice << endl;
 
         current->next = head;
         head = current;
@@ -150,7 +149,7 @@ void initializeTickets(int numTickets, float price) {
 void runTicketSystem() {
     int option;
 
-    initializeTickets(20, 150.0);
+    initializeTickets(20, 150);
 
     do {
         displayMenu();
