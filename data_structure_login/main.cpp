@@ -81,11 +81,20 @@ void buyTicket() {
 int refundTicket(){
 
 }
+void initializeTickets(int numTickets, float price) {
+    for (int i = 1; i <= numTickets; ++i) {
+        Node* newNode = new Node;
+        newNode->ticketNumber = i;
+        newNode->ticketPrice = price;
+        newNode->next = head;
+        head = newNode;
+    }
+}
 
 void runTicketSystem() {
     int option;
 
-    //initializeTickets(20, 150.0);
+    initializeTickets(20, 150.0);
 
     do {
         displayMenu();
