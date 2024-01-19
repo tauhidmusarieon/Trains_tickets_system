@@ -53,8 +53,9 @@ void buyTicket() {
 
 
         int totalAmount;
-        if (numTicketsToBuy <= 0 && numTicketsToBuy>4) {
+        if (numTicketsToBuy <= 0 || numTicketsToBuy > 4) {
             cout << "Invalid number of tickets." << endl;
+            cout << "One person can buy four tickets." << endl;
             return;
         }
 
