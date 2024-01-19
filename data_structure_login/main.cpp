@@ -79,6 +79,35 @@ void buyTicket() {
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 int refundTicket(){
+    cout << "Enter the ticket number you want to refund: ";
+    int refundNumber;
+    cin >> refundNumber;
+
+    Node* current = head;
+    Node* previous = nullptr;
+
+    while (current != nullptr && current->ticketNumber != refundNumber) {
+        previous = current;
+        current = current->next;
+    }
+
+    if (current != nullptr) {
+        if (previous != nullptr) {
+            previous->next = current->next;
+        } else {
+            head = current->next;
+        }
+
+        cout << "Ticket " << current->ticketNumber << " refunded for $" << fixed << setprecision(2) << current->ticketPrice << endl;
+
+        current->next = head;
+        head = current;
+    } else {
+        cout << "Ticket not found or already refunded." << endl;
+    }
+
+
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 }
 void initializeTickets(int numTickets, float price) {
