@@ -51,6 +51,8 @@ void buyTicket() {
         cout << "Enter the number of tickets you want to buy: ";
         cin >> numTicketsToBuy;
 
+
+        int totalAmount;
         if (numTicketsToBuy <= 0) {
             cout << "Invalid number of tickets." << endl;
             return;
@@ -60,7 +62,12 @@ void buyTicket() {
 
         for (int i = 0; i < numTicketsToBuy && temp != nullptr; ++i) {
             if (confirmPurchase()) {
+
+
                 cout << "You have purchased Ticket " << temp->ticketNumber << " for TK" << fixed << setprecision(2) << temp->ticketPrice << endl;
+
+                totalAmount += temp->ticketPrice;
+
                 Node* nextTicket = temp->next;
                 delete temp;
                 temp = nextTicket;
@@ -71,6 +78,26 @@ void buyTicket() {
         }
 
         head = temp;
+
+        cout << "Total amount to be paid: TK" << fixed << setprecision(2) << totalAmount << endl;
+        int paidAmount;
+        cout << "Enter the amount: ";
+        cin >> paidAmount;
+
+        if (paidAmount>totalAmount)
+        {
+            cout << "Payment successful. Happy journey " << endl; c
+
+        }
+        else {
+
+            cout << "Insufficient payment. Ticket purchase unsuccessful." << endl;
+            cout << "Please add : " << totalAmount-paidAmount << " TK" << endl;
+        }
+
+
+
+
     } else {
         cout << "Sorry, no tickets available." << endl;
         cout << "please try to next day";
@@ -229,7 +256,7 @@ void forgot()
 
 int main()
 {
-    int n;
+    int n,payment;
     cout << "Welcome to the ticket system : " << endl;
     cout << "1. Sign up\n2. Login\n3. Exit\nEnter your option : ";
     cin >> n;
