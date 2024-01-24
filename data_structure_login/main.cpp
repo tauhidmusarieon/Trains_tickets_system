@@ -4,7 +4,8 @@ using namespace std;
 void login();
 void signup();
 void forgot();
-
+void search_tickyet_status();
+void runTicketSystem();
 string username, username1, username2, password, password1;
 
 struct Node{
@@ -20,7 +21,8 @@ void displayMenu() {
     cout << "1. View Available Tickets" << endl;
     cout << "2. Buy Ticket" << endl;
     cout << "3. Refund Ticket" << endl;
-    cout << "4. Exit" << endl;
+    cout << "4. Search Ticket status" << endl;
+    cout << "5. Exit" << endl;
 }
 
 void viewAvailableTickets() {
@@ -147,6 +149,38 @@ void initializeTickets(int numTickets, float price) {
     }
 }
 
+void search_tickyet_status() {
+    cout << "Enter the ticket number to check its status: ";
+    int ticketToCheck;
+    cin >> ticketToCheck;
+
+    Node* current = head;
+    bool found = false;
+
+    while (current != nullptr) {
+        if (current->ticketNumber == ticketToCheck) {
+            found = true;
+            break;
+        }
+        current = current->next;
+    }
+
+    if (found) {
+        if (current->next == nullptr) {
+            cout << "Ticket " << ticketToCheck << ": Already purchased" << endl;
+        } else {
+
+            cout << "Ticket " << ticketToCheck << ": Available" << endl;
+        }
+    } else {
+        cout << "Ticket not found." << endl;
+    }
+
+    runTicketSystem();
+}
+
+
+
 void runTicketSystem() {
     int option;
 
@@ -168,6 +202,9 @@ void runTicketSystem() {
                 refundTicket();
                 break;
             case 4:
+                search_tickyet_status();
+                break;
+            case 5:
                 cout << "Exiting program. Goodbye!" << endl;
                 break;
             default:
@@ -270,6 +307,12 @@ int main()
         login();
         break;
     case 3:
+        refundTicket();
+        break;
+    case 4:
+        search_tickyet_status();
+        break;
+    case 5:
         cout << "Exiting the program. thanks!" << endl;
         return 0;
     default:
