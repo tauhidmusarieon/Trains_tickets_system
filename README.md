@@ -10,6 +10,8 @@
 
 5.Search tickets status
 
-6.Add Money to buy tickets
+6. Check Balance
 
-7.exit
+7. Add Balance 
+
+8.exit
