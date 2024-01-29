@@ -7,7 +7,7 @@ void forgot();
 void search_tickyet_status();
 void runTicketSystem();
 string username, username1, username2, password, password1;
-int mainBalance = 1000;
+int mainBalance = 100;
 struct Node{
 int ticketNumber;
 float ticketPrice;
@@ -23,7 +23,8 @@ void displayMenu() {
     cout << "3. Refund Ticket" << endl;
     cout << "4. Search Ticket status" << endl;
     cout << "5. Check Balance " << endl;
-    cout << "6. Exit" << endl;
+    cout << "6. Add Balance " << endl;
+    cout << "7. Exit" << endl;
 }
 
 void viewAvailableTickets() {
@@ -48,6 +49,17 @@ bool confirmPurchase() {
 
     return (response == 'y' || response == 'Y');
 }
+void addBalance ()
+{
+            int add;
+            cout << "Enter the amount you want to add : ";
+            cin >> add;
+            mainBalance+=add;
+            cout << "money added successfull." << endl;
+            cout << "Your current balance is = " << mainBalance << endl;
+}
+
+
 
 void buyTicket() {
     if (head != nullptr) {
@@ -93,7 +105,7 @@ void buyTicket() {
         cin >> z;
         if (z==1){
 
-        if (mainBalance>totalAmount)
+        if (mainBalance>=totalAmount)
         {
             cout << "Payment successful. Happy journey " << endl << endl;
             mainBalance-= totalAmount;
@@ -101,19 +113,21 @@ void buyTicket() {
         else {
 
             cout << "Insufficient payment. Ticket purchase unsuccessful." << endl;
-            cout << "Please add : " << mainBalance-totalAmount << " TK" << endl;
+            cout << "Please add : " << totalAmount-mainBalance << " TK" << endl;
              cout << "if you want to add money to your account press 1 : ";
+
             int b;
             cin >> b;
             if (b==1)
             {
-                int add;
+                addBalance();
+                /*int add;
                 cout << "Enter the amount you want to add : ";
                 cin >> add;
                 mainBalance+=add;
                 cout << "money added successfull." << endl;
                 mainBalance+=b;
-                cout << "Your current balance is = " << mainBalance << endl;
+                cout << "Your current balance is = " << mainBalance << endl;*/
             }
             else
             {
@@ -242,7 +256,10 @@ void runTicketSystem() {
             case 5:
                 checkBalance();
                 break;
-            case 6:
+            case 6 :
+                addBalance();
+                break;
+            case 7:
                 cout << "Exiting program. Goodbye!" << endl;
                 exit(0);
             default:
