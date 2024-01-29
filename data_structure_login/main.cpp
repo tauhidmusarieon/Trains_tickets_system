@@ -39,7 +39,7 @@ void viewAvailableTickets() {
         count++;
     }
     if (count == 0) {
-        cout << "No tickets available." << endl;
+        cout << "No tickets available." << endl << endl;
     }
 }
 bool confirmPurchase() {
@@ -56,7 +56,7 @@ void addBalance ()
             cin >> add;
             mainBalance+=add;
             cout << "money added successfull." << endl;
-            cout << "Your current balance is = " << mainBalance << endl;
+            cout << "Your current balance is = " << mainBalance << endl <<endl;
 }
 
 
@@ -110,42 +110,40 @@ void buyTicket() {
             cout << "Payment successful. Happy journey " << endl << endl;
             mainBalance-= totalAmount;
         }
+
         else {
 
             cout << "Insufficient payment. Ticket purchase unsuccessful." << endl;
             cout << "Please add : " << totalAmount-mainBalance << " TK" << endl;
-             cout << "if you want to add money to your account press 1 : ";
+             cout << "if you want to add money to your account press 1 or exit for 0 : ";
 
             int b;
             cin >> b;
             if (b==1)
             {
                 addBalance();
-                /*int add;
-                cout << "Enter the amount you want to add : ";
-                cin >> add;
-                mainBalance+=add;
-                cout << "money added successfull." << endl;
-                mainBalance+=b;
-                cout << "Your current balance is = " << mainBalance << endl;*/
+            }
+            else if (b==0)
+            {
+                exit (0);
             }
             else
             {
-                cout << "Invalid choice." << endl;
+                cout << "Invalid choice." << endl<< endl;
             }
         }
 
         }
         else
         {
-            cout << "Invalid choice." << endl ;
+            cout << "Invalid choice." << endl<< endl ;
         }
 
 
 
 
     } else {
-        cout << "Sorry, no tickets available." << endl;
+        cout << "Sorry, no tickets available." << endl<< endl;
         cout << "please try to next day";
     }
 
