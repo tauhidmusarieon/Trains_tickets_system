@@ -7,7 +7,7 @@ void forgot();
 void search_tickyet_status();
 void runTicketSystem();
 string username, username1, username2, password, password1;
-int mainBalance = 100;
+int mainBalance = 1000;
 struct Node{
 int ticketNumber;
 float ticketPrice;
