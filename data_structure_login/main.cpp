@@ -7,7 +7,7 @@ void forgot();
 void search_tickyet_status();
 void runTicketSystem();
 string username, username1, username2, password, password1;
-
+int mainBalance = 1000;
 struct Node{
 int ticketNumber;
 float ticketPrice;
@@ -22,7 +22,8 @@ void displayMenu() {
     cout << "2. Buy Ticket" << endl;
     cout << "3. Refund Ticket" << endl;
     cout << "4. Search Ticket status" << endl;
-    cout << "5. Exit" << endl;
+    cout << "5. Check Balance " << endl;
+    cout << "6. Exit" << endl;
 }
 
 void viewAvailableTickets() {
@@ -47,6 +48,7 @@ bool confirmPurchase() {
 
     return (response == 'y' || response == 'Y');
 }
+
 void buyTicket() {
     if (head != nullptr) {
         int numTicketsToBuy;
@@ -81,20 +83,48 @@ void buyTicket() {
         }
 
         head = temp;
-
-        cout << "Total amount to be paid(extra 20 tk for vat,tax): " << fixed << setprecision(2) << totalAmount+18 << " TK" << endl;
+        totalAmount = totalAmount+20;
+        cout << "Total amount to be paid(extra 20 tk for vat,tax): " << fixed << setprecision(2) << totalAmount<< " TK" << endl;
         int paidAmount;
-        cout << "Enter the amount: ";
-        cin >> paidAmount;
+        /*cout << "Enter the amount: ";
+        cin >> paidAmount;*/
+        cout << "if you want to paid money press 1 : ";
+        int z;
+        cin >> z;
+        if (z==1){
 
-        if (paidAmount>totalAmount)
+        if (mainBalance>totalAmount)
         {
             cout << "Payment successful. Happy journey " << endl << endl;
+            mainBalance-= totalAmount;
         }
         else {
 
             cout << "Insufficient payment. Ticket purchase unsuccessful." << endl;
-            cout << "Please add : " << totalAmount-paidAmount << " TK" << endl;
+            cout << "Please add : " << mainBalance-totalAmount << " TK" << endl;
+             cout << "if you want to add money to your account press 1 : ";
+            int b;
+            cin >> b;
+            if (b==1)
+            {
+                int add;
+                cout << "Enter the amount you want to add : ";
+                cin >> add;
+                mainBalance+=add;
+                cout << "money added successfull." << endl;
+                mainBalance+=b;
+                cout << "Your current balance is = " << mainBalance << endl;
+            }
+            else
+            {
+                cout << "Invalid choice." << endl;
+            }
+        }
+
+        }
+        else
+        {
+            cout << "Invalid choice." << endl ;
         }
 
 
@@ -107,6 +137,11 @@ void buyTicket() {
 
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
+void checkBalance()
+{
+    cout << "Your current balance is = " << mainBalance << endl;
+}
+
 int refundTicket(){
     cout << "Enter the ticket number you want to refund: ";
     int refundNumber;
@@ -155,7 +190,7 @@ void search_tickyet_status() {
     cin >> ticketToCheck;
 
     Node* current = head;
-    bool found = false;
+    bool found = true;
 
     while (current != nullptr) {
         if (current->ticketNumber == ticketToCheck) {
@@ -205,8 +240,11 @@ void runTicketSystem() {
                 search_tickyet_status();
                 break;
             case 5:
-                cout << "Exiting program. Goodbye!" << endl;
+                checkBalance();
                 break;
+            case 6:
+                cout << "Exiting program. Goodbye!" << endl;
+                exit(0);
             default:
                 cout << "Invalid choice. Please enter a valid option." << endl;
         }
@@ -307,12 +345,6 @@ int main()
         login();
         break;
     case 3:
-        refundTicket();
-        break;
-    case 4:
-        search_tickyet_status();
-        break;
-    case 5:
         cout << "Exiting the program. thanks!" << endl;
         return 0;
     default:
